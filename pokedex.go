@@ -43,6 +43,8 @@ type Language struct {
 }
 
 func main() {
+	
+
 	url := "http://pokeapi.co/api/v2/pokedex/kanto/"
 
 	// Allows you to add added configurations to the http request and execute you can construct the request and execute with the client which add specified configurations
