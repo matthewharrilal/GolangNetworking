@@ -7,11 +7,16 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 // Define structures from base level up
 
 type Region struct {
+	gorm.Model
+
 	Descriptions []Description `json:"descriptions"` // Slice of description objects
 
 	Identification int `json:"id"`
@@ -43,7 +48,6 @@ type Language struct {
 }
 
 func main() {
-	
 
 	url := "http://pokeapi.co/api/v2/pokedex/kanto/"
 
@@ -70,7 +74,7 @@ func main() {
 
 	// All available data is contained to res.body use the input output utilities to read the contents until the end of file EOF occurs
 	body, readErr := ioutil.ReadAll(res.Body)
-
+	fmt.Printf(">>>>> Response Body ", string(body))
 	if readErr != nil {
 		// See if error exists after reading the  contents of the file
 		log.Fatal(readErr)
